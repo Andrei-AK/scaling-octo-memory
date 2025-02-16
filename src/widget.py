@@ -1,5 +1,5 @@
 import string
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 # user_information = "Visa Platinum 7000792289606361"
 user_information = "Счет 73654108430135874305"
