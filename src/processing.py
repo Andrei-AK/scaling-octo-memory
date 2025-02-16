@@ -8,6 +8,6 @@ def filter_by_state(list_for_sort: list, sort_key: str = "EXECUTED") -> list:
 
 
 def sort_by_date(list_for_sort: list, sort_direction: bool = True) -> list:
-    """Сортировка сипска по дате"""
+    """Сортируем список по дате"""
     sorted_list = sorted(list_for_sort, key=lambda element: element["date"], reverse=sort_direction)
     return sorted_list
