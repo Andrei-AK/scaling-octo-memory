@@ -1,5 +1,7 @@
 import string
+
 from src.masks import get_mask_account, get_mask_card_number
+
 
 def check_correct_data(user_information: str) -> int:
     """Проверка корректности полученных данных"""
