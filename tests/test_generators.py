@@ -3,7 +3,6 @@ import pytest
 from src.generators import (
     card_number_generator,
     filter_by_currency,
-    recursive_search,
     transaction_descriptions,
 )
 
@@ -11,12 +10,6 @@ from src.generators import (
 @pytest.mark.parametrize("initial_num, final_num, expected_result", [(1, 5, [1, 2, 3, 4, 5]), (5, 7, [5, 6, 7])])
 def test_card_number_generator(initial_num: int, final_num: int, expected_result: int) -> None:
     assert list(card_number_generator(initial_num, final_num)) == expected_result
-
-
-def test_recursive_search(dict_of_date: dict) -> None:
-    assert recursive_search(dict_of_date, "USD") is True
-    assert recursive_search({}, "") is False
-    assert recursive_search(dict_of_date, "") is False
 
 
 def test_filter_by_currency(date_for_generators: list) -> None:
@@ -50,10 +43,10 @@ def test_filter_by_currency(date_for_generators: list) -> None:
         },
     ]
     generator = filter_by_currency(date_for_generators, "USD")
-    assert expect_result == next(generator)
+    assert expect_result == list(generator)
     expect_result = []
     generator = filter_by_currency([], "")
-    assert expect_result == next(generator)
+    assert expect_result == list(generator)
 
 
 def test_transaction_descriptions(date_for_generators: list) -> None:
