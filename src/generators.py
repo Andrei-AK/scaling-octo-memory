@@ -2,6 +2,7 @@ from typing import Iterator
 
 
 def recursive_search(some_dict: dict, target: str) -> bool:
+    '''Проверка наличия target в словаре/списке'''
     if isinstance(some_dict, dict):
         if some_dict.get("code") == target:
             return True
@@ -16,11 +17,13 @@ def recursive_search(some_dict: dict, target: str) -> bool:
 
 
 def filter_by_currency(data: list, target: str) -> Iterator[list | None]:
+    '''Фильтрация списка транзакций по валюте'''
     filtered_transactions = [transaction for transaction in data if recursive_search(transaction, target) is True]
     yield filtered_transactions
 
 
 def transaction_descriptions(data: list) -> Iterator[str]:
+    '''Вывод описания операций'''
     cnt = 0
     transaction_description = list(
         (
@@ -38,6 +41,7 @@ def transaction_descriptions(data: list) -> Iterator[str]:
 
 
 def card_number_generator(initial_value: int, final_value: int) -> Iterator[int]:
+    '''Генерирование номера карты между начальным и конечным значением'''
     while True:
         yield initial_value
         if initial_value < final_value:
