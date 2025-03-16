@@ -10,10 +10,7 @@ def test_log_with_capsys(capsys):
     captured = capsys.readouterr()
     assert (
         captured.out
-        == "Функция my_function с аргументами (), {} начала работу\n"
-        + "\n"
-        + "Функция my_function закончила работу с резултатом 1\n"
-        + "\n"
+        == "my_function ok\n\n"
     )
 
 
@@ -32,22 +29,15 @@ def test_log():
     my_function(1, 2)
     with open("test_log.txt", "r", encoding="UTF-8") as f:
         str_in_file = f.read()
-    assert "Функция my_function с аргументами (1, 2), {} начала работу" in str_in_file
-    assert "Функция my_function закончила работу с резултатом 3" in str_in_file
+    assert "my_function ok\n" in str_in_file
 
     @log(filename="test_log.txt")
     def my_function(x, y):
         return x + y
 
     my_function("a", 2)
-    with open("mylog.txt", "r", encoding="UTF-8") as f:
+    with open("test_log.txt", "r", encoding="UTF-8") as f:
         str_in_file = f.read()
-    assert "Функция my_function с аргументами (" + "'" + "a" + "'" + ", 2), {} начала работу" in str_in_file
-    assert (
-        "Функция my_function закончила работу с ошибкой can only concatenate str (not "
-        + '"'
-        + "int"
-        + '"'
-        + ") to str"
+    assert ("my_function error: can only concatenate str (not " + '"' +'int'+ '"'+') to str. Inputs: ('+"'"+'a'+"'"+", 2), {}"
         in str_in_file
     )
