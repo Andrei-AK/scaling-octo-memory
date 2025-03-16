@@ -8,10 +8,7 @@ def test_log_with_capsys(capsys):
 
     my_function()
     captured = capsys.readouterr()
-    assert (
-        captured.out
-        == "my_function ok\n\n"
-    )
+    assert captured.out == "my_function ok\n\n"
 
 
 def test_log():
@@ -38,6 +35,15 @@ def test_log():
     my_function("a", 2)
     with open("test_log.txt", "r", encoding="UTF-8") as f:
         str_in_file = f.read()
-    assert ("my_function error: can only concatenate str (not " + '"' +'int'+ '"'+') to str. Inputs: ('+"'"+'a'+"'"+", 2), {}"
+    assert (
+        "my_function error: can only concatenate str (not "
+        + '"'
+        + "int"
+        + '"'
+        + ") to str. Inputs: ("
+        + "'"
+        + "a"
+        + "'"
+        + ", 2), {}"
         in str_in_file
     )
