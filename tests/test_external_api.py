@@ -30,4 +30,4 @@ def test_amount_transaction_failed_api(mock_getenv, mock_response):
     mock_response.return_value.status_code = 500
     transaction = {"operationAmount": {"amount": "10.0", "currency": {"code": "USD"}}}
     result = amount_transaction(transaction)
-    assert result is None
+    assert result == 0.0
