@@ -23,3 +23,10 @@ def test_read_json_wrong_path(mock_file):
 def test_read_json_wrong_json(mock_file):
     result = read_json()
     assert result == []
+
+
+@patch("src.utils.file_path")
+def test_read_json_wrong_path1(mock_file):
+    mock_file = "src/1.json"
+    result = read_json()
+    assert result == []

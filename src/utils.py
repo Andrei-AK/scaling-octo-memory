@@ -1,10 +1,11 @@
 import json
 
+file_path = "C:/Users/ggrea/Desktop/ST PY/pj/data/operations.json"
+
 
 def read_json():
     """Чтение файла формата json"""
     try:
-        file_path = "C:/Users/ggrea/Desktop/ST PY/pj/data/operations.json"
         with open(file_path, "r", encoding="UTF-8") as f:
             file_data = f.read()
             if file_data:
