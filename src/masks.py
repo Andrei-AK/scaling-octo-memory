@@ -3,9 +3,9 @@ from typing import Any
 
 logging.basicConfig(encoding="UTF-8")
 logger = logging.getLogger(__name__)
-logger.setLevel('DEBUG')
-file_handler = logging.FileHandler('../logs/masks.log', mode='w')
-file_formatter = logging.Formatter('%(asctime)s %(filename)s %(levelname)s: %(message)s')
+logger.setLevel("DEBUG")
+file_handler = logging.FileHandler("../logs/masks.log", mode="w")
+file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
@@ -31,7 +31,6 @@ def get_mask_card_number(user_card_number: str) -> str | None | Any:
         return split_masked_card_number
     except ValueError:
         logger.error(f"Возникла ошибка {ValueError} при выполнении функции {get_mask_card_number.__name__}")
-
 
 
 def get_mask_account(user_account_number: str) -> str:
