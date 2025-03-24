@@ -1,15 +1,35 @@
 import json
-import os
+import logging
+
+
+file_path = "C:/Users/ggrea/Desktop/ST PY/pj/data/operations.json"
+
+logging.basicConfig(encoding="UTF-8")
+logger = logging.getLogger(__name__)
+logger.setLevel('DEBUG')
+file_handler = logging.FileHandler('../logs/utils.log', mode='w')
+file_formatter = logging.Formatter('%(asctime)s %(filename)s %(levelname)s: %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
 
 def read_json():
     """Чтение файла формата json"""
-    file_path = "../data/operations.json"
-    if os.path.exists(file_path):
+    logger.debug('Функция начала работу')
+    try:
         with open(file_path, "r", encoding="UTF-8") as f:
+            logger.debug('Файл открылся успешно')
             file_data = f.read()
             if file_data:
                 json_data = json.loads(file_data)
-                if type(json_data) is list:
-                    return json_data
-    return []
+                logger.debug('JSON успешно прочитан')
+                return json_data
+            else:
+                logger.error("Файл не содержит список.")
+                return []
+    except FileNotFoundError:
+        logger.error(f'Файл по пути {file_path} не найден')
+        return []
+    except json.JSONDecodeError:
+        logger.error("Невозможно декодировать (преобразовать) JSON-данные.")
+        return []
