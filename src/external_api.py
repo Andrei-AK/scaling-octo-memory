@@ -20,9 +20,7 @@ def amount_transaction(transaction):
                 f"amount={transaction['operationAmount']['amount']}",
                 headers=headers,
             )
-            print(response)
             status_code = response.status_code
-            print(status_code, type(status_code))
             if status_code == 200:
                 converted_transaction = response.json()
                 return float(converted_transaction["result"])
