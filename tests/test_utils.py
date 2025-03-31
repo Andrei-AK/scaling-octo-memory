@@ -23,4 +23,5 @@ def test_read_json_wrong_json():
     with patch("builtins.open", return_data=""):
         with patch("json.loads", side_effect=json.JSONDecodeError("msg", "doc", 0)):
             result = read_json()
+
     assert result == []
