@@ -4,7 +4,7 @@ import logging
 logging.basicConfig(encoding="UTF-8")
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
-file_handler = logging.FileHandler("../logs/utils.log", mode="w")
+file_handler = logging.FileHandler("logs/utils.log", mode="w")
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)

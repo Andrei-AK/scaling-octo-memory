@@ -3,7 +3,7 @@ import logging
 
 import pandas as pd
 
-file_handler = logging.FileHandler(filename="../logs/read_data.log", mode="w", encoding="UTF-8")
+file_handler = logging.FileHandler(filename="logs/read_data.log", mode="w", encoding="UTF-8")
 logging.basicConfig(level="DEBUG", encoding="UTF-8", handlers=[file_handler])
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
