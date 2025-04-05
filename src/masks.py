@@ -1,12 +1,12 @@
 import logging
 from typing import Any
+import os
 
-logging.basicConfig(encoding="UTF-8")
-logger = logging.getLogger(__name__)
-logger.setLevel("DEBUG")
-file_handler = logging.FileHandler("logs/masks.log", mode="w")
+file_handler = logging.FileHandler(filename=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs'), mode="w", encoding="UTF-8")
+logging.basicConfig(level="DEBUG", encoding="UTF-8", handlers=[file_handler])
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
+logger = logging.getLogger()
 logger.addHandler(file_handler)
 
 

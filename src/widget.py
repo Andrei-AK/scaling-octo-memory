@@ -3,31 +3,20 @@ import string
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def check_correct_data(user_information: str) -> int:
+def mask_account_card(user_information: str) -> str:
     """Проверка корректности полученных данных"""
     cnt: int = 0
-    for i in user_information:
-        if i.isdigit() or i in string.punctuation:
-            cnt += 1
-    if cnt == 16:  # 1-card number, 2-account number, 0-fail input
-        return 1
-    if cnt == 20:
-        return 2
-    else:
-        return 0
-
-
-def mask_account_card(user_card_info: str) -> str:
-    """Маскирует номер счета/карты пользователя"""
-    check_result: int = check_correct_data(user_card_info)
-    if not check_result == 0:
-        if check_result == 1:
-            masked_user_info: str = get_mask_card_number(user_card_info)
-            return masked_user_info
-        if check_result == 2:
-            masked_user_info = get_mask_account(user_card_info)
-            return masked_user_info
-    return "Данные введены неверно!"
+    user_information = str(user_information)
+    if user_information is not None:
+        for i in user_information:
+            if i.isdigit() or i in string.punctuation:
+                cnt += 1
+        if cnt == 16:
+            return get_mask_card_number(user_information)
+        if cnt == 20:
+            return get_mask_account(user_information)
+        else:
+            return "Данные введены неверно!"
 
 
 def get_date(date_valid: str) -> str:

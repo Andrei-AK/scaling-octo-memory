@@ -1,12 +1,12 @@
 import json
 import logging
+import os
 
-logging.basicConfig(encoding="UTF-8")
-logger = logging.getLogger(__name__)
-logger.setLevel("DEBUG")
-file_handler = logging.FileHandler("logs/utils.log", mode="w")
+file_handler = logging.FileHandler(filename=os.path.join('logs', 'utils.log'), mode="w", encoding="UTF-8")
+logging.basicConfig(level="DEBUG", encoding="UTF-8", handlers=[file_handler])
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
+logger = logging.getLogger()
 logger.addHandler(file_handler)
 
 
@@ -15,7 +15,7 @@ logger.addHandler(file_handler)
 
 def read_json():
     """Чтение файла формата json"""
-    file_path = "C:/Users/ggrea/Desktop/ST PY/pj/data/operations.json"
+    file_path = os.path.join('data', 'operations.json')
     logger.debug("Функция начала работу")
     try:
         with open(file_path, "r", encoding="UTF-8") as f:
