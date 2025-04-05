@@ -1,17 +1,15 @@
 import csv
 import logging
+import os
 
 import pandas as pd
 
-file_handler = logging.FileHandler(filename="logs/read_data.log", mode="w", encoding="UTF-8")
+file_handler = logging.FileHandler(filename=os.path.join('logs', 'read_data.log'), mode="w", encoding="UTF-8")
 logging.basicConfig(level="DEBUG", encoding="UTF-8", handlers=[file_handler])
 file_formatter = logging.Formatter("%(asctime)s %(filename)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger = logging.getLogger()
 logger.addHandler(file_handler)
-
-path_csv_file = "C:/Users/ggrea/Desktop/ST PY/pj/transactions.csv"
-path_xlsx_file = "C:/Users/ggrea/Desktop/ST PY/pj/transactions_excel.xlsx"
 
 
 def read_csv_file(path_file):
@@ -32,11 +30,11 @@ def read_csv_file(path_file):
 
 def read_file_by_pandas(path_file):
     """Читаем файл excel с помощью pandas, возвращаем список словарей"""
-    logger.debug(f"Функция {read_csv_file.__name__} начала работу")
+    logger.debug(f"Функция {read_file_by_pandas.__name__} начала работу")
     try:
         data = pd.read_excel(path_file)
         new_list = data.to_dict(orient="records")
-        logger.debug(f"Функция {read_csv_file.__name__} успешно закончила работу")
+        logger.debug(f"Функция {read_file_by_pandas.__name__} успешно закончила работу")
         return new_list
     except FileNotFoundError:
         logger.error(f"Файл {path_file} не найден")
