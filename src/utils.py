@@ -10,6 +10,9 @@ logger = logging.getLogger()
 logger.addHandler(file_handler)
 
 
+
+
+
 def read_json():
     """Чтение файла формата json"""
     file_path = os.path.join('data', 'operations.json')
@@ -20,6 +23,7 @@ def read_json():
             file_data = f.read()
             if file_data:
                 json_data = json.loads(file_data)
+
                 logger.debug("JSON успешно прочитан")
                 return json_data
             else:
@@ -30,4 +34,13 @@ def read_json():
         return []
     except json.JSONDecodeError:
         logger.error("Невозможно декодировать (преобразовать) JSON-данные.")
+                return json_data
+            else:
+                print("Файл не содержит список.")
+                return []
+    except FileNotFoundError:
+        print("Файл не найден.")
+        return []
+    except json.JSONDecodeError:
+        print("Невозможно декодировать (преобразовать) JSON-данные.")
         return []
