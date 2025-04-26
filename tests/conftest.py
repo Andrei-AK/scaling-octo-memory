@@ -1,5 +1,7 @@
 import pytest
 
+from src.category_and_priduct import Product, Category
+
 
 @pytest.fixture
 def date_for_processing() -> list:
@@ -73,3 +75,16 @@ def dict_of_date() -> dict:
         "from": "Счет 19708645243227258542",
         "to": "Счет 75651667383060284188",
     }
+
+
+@pytest.fixture
+def some_product() -> Product:
+    return Product("Ноутбук", "Игровой", 50000.0, 10)
+
+
+@pytest.fixture
+def some_category(some_product) -> Category:
+    Category.total_categories = 0
+    Category.total_products = 0
+
+    return Category("Электроника", "Техника", [some_product])
